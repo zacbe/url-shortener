@@ -1,14 +1,49 @@
-service: aux
-frameworkVersion: '3'
+service: url-shortener
+frameworkVersion: "3"
 
 provider:
   name: aws
   runtime: nodejs18.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-west-2'}
+  memorySize: 1024
+  architecture: arm64
+  logRetentionInDays: 7
+  deploymentMethod: direct
 
 functions:
-  api:
-    handler: index.handler
+  createUrl:
+    handler: src/services/create-url/handler.createUrlHandler
+    memorySize: ${self:provider.memorySize}
+    description: WIP
     events:
       - httpApi:
-          path: /
+          path: /url
+          method: post
+
+  fetchUrl:
+    handler: src/services/fetch-url/handler.fetchUrlHandler
+    memorySize: ${self:provider.memorySize}
+    description: WIP
+    events:
+      - httpApi:
+          path: /url/{id}
           method: get
+
+  updateUrl:
+    handler: src/services/update-url/handler.updateUrlHandler
+    memorySize: ${self:provider.memorySize}
+    description: WIP
+    events:
+      - httpApi:
+          path: /url/{id}
+          method: put
+
+  deleteUrl:
+    handler: src/services/delete-url/handler.deleteUrlHandler
+    memorySize: ${self:provider.memorySize}
+    description: WIP
+    events:
+      - httpApi:
+          path: /url/{id}
+          method: delete
