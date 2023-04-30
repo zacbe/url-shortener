@@ -1,0 +1,33 @@
+{
+  "name": "url-shortener",
+  "version": "1.0.0",
+  "description": "Serverless url shortener",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zacbe/url-shortener.git"
+  },
+  "author": "@zacbe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zacbe/url-shortener/issues"
+  },
+  "homepage": "https://github.com/zacbe/url-shortener#readme",
+  "devDependencies": {
+    "eslint": "^8.39.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-security": "^1.7.1",
+    "prettier": "^2.8.8"
+  }
+}
