@@ -1,26 +1,38 @@
-// import core
-import middy from "@middy/core";
+// local imports
+import { composeRes } from "../../helpers/index.js";
+import { middleware } from "../../middleware/index.js";
 
-// import some middlewares
-import jsonBodyParser from "@middy/http-json-body-parser";
-import httpErrorHandler from "@middy/http-error-handler";
-import validator from "@middy/validator";
-
-async function baseHandler(event) {
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: "Go Serverless v3.0! Your function executed successfully!",
-        input: event,
+const schema = {
+  type: "object",
+  required: ["body"],
+  properties: {
+    body: {
+      type: "object",
+      required: ["url", "expiresAt"],
+      properties: {
+        url: { type: "string", format: "url" },
+        expiresAt: {
+          type: "string",
+          format: "date",
+        },
       },
-      null,
-      2
-    ),
-  };
+    },
+  },
+};
+
+async function baseHandler(event /*context, { signal }*/) {
+  const qp = event.pathParameters;
+  const body = event.body;
+  console.info({ qp, body });
+
+  // 1. create unique id
+  // 2. create record in db
+
+  const shortUrl = "https://sh.zacbe.dev/123456";
+  return composeRes(200, {
+    url: shortUrl,
+  });
 }
 
-let handler = middy(baseHandler);
-// .use(jsonBodyParser).use(httpErrorHandler);
-
+let handler = middleware(baseHandler, schema);
 export { handler };

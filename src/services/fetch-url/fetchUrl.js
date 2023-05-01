@@ -1,26 +1,29 @@
-// import core
-import middy from "@middy/core";
+// local imports
+import { composeRes } from "../../helpers/index.js";
+import { middleware } from "../../middleware/index.js";
 
-// import some middlewares
-import jsonBodyParser from "@middy/http-json-body-parser";
-import httpErrorHandler from "@middy/http-error-handler";
-import validator from "@middy/validator";
+const schema = {
+  type: "object",
+  properties: {
+    body: {
+      type: "object",
+    },
+  },
+};
 
 async function baseHandler(event) {
-  return {
-    statusCode: 200,
-    body: JSON.stringify(
-      {
-        message: "Go Serverless v3.0! Your function executed successfully!",
-        input: event,
-      },
-      null,
-      2
-    ),
-  };
+  const qp = event.pathParameters;
+  console.info({ qp });
+
+  // 1. create unique id
+  // 2. create record in db
+
+  const longUrl =
+    "https://dev.to/osmanforhad/react-js-identifier-text-has-already-been-declared-solution-4b2k";
+  return composeRes(301, {
+    Location: longUrl,
+  });
 }
 
-let handler = middy(baseHandler);
-// .use(jsonBodyParser).use(httpErrorHandler);
-
+let handler = middleware(baseHandler, schema);
 export { handler };
