@@ -4,7 +4,8 @@ module.exports = {
     "plugin:security/recommended",
     "plugin:node/recommended",
   ],
-  env: { es6: true, node: true, browser: true, mocha: true },
+  env: { es2020: true, node: true, browser: true, mocha: true },
+  ignorePatterns: [".eslintrc.js"],
   parserOptions: {
     ecmaVersion: 13,
   },

@@ -13,7 +13,7 @@ provider:
 
 functions:
   createUrl:
-    handler: src/services/create-url/handler.createUrlHandler
+    handler: src/services/create-url/createUrl.handler
     memorySize: ${self:provider.memorySize}
     description: WIP
     events:
@@ -22,7 +22,7 @@ functions:
           method: post
 
   fetchUrl:
-    handler: src/services/fetch-url/handler.fetchUrlHandler
+    handler: src/services/fetch-url/fetchUrl.handler
     memorySize: ${self:provider.memorySize}
     description: WIP
     events:
@@ -31,7 +31,7 @@ functions:
           method: get
 
   updateUrl:
-    handler: src/services/update-url/handler.updateUrlHandler
+    handler: src/services/update-url/updateUrl.handler
     memorySize: ${self:provider.memorySize}
     description: WIP
     events:
@@ -40,7 +40,7 @@ functions:
           method: put
 
   deleteUrl:
-    handler: src/services/delete-url/handler.deleteUrlHandler
+    handler: src/services/delete-url/deleteUrl.handler
     memorySize: ${self:provider.memorySize}
     description: WIP
     events:
